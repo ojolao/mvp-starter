@@ -18,27 +18,41 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+    1.) Follow Up: The To-Do List Automator 
+
+    Other Ideas:
+    Follow Up: Making Your To-Do List Flow
+    Follow Up: The To-Do List Sequencer
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+    When you need to know what's next
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+    The order of items in a list matters. Many to-do list apps don't get this. Follow Up is a product that allows you to create your to-do list and arrange the items in the order you'd like to get things done. So you never have to wonder what comes next. 
 
 ## Problem ##
   > Describe the problem your product solves.
+    To-do lists are great for generating lists, but not always in a particular order. This affects productivity because users often generate lists and forget about them, or set reminders for tasks that they then ignore. Many people make lists to forget about them. 
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  By allowing users to create their to do lists and arrange the tasks in a desired order, Follow Up helps users plan their days and projects so that users will always know what task they should be tackling next according to their plan.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  "Follow Up is the simplest way to plan your day"
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  Visit us at www.___
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "Not only is Follow Up simple and elegant, it's planning feature was exactly what I needed to get things done. I knew what was next on my plan, and I got to check off items as I completed them, not work on tasks randomly and forget to follow up."
+
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+   Visit us at www.___
