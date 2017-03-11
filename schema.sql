@@ -4,10 +4,9 @@ CREATE DATABASE test;
 
 USE test;
 
-CREATE TABLE items (
+CREATE TABLE IF NOT EXISTS items (
   id int NOT NULL AUTO_INCREMENT,
-  quantity integer NOT NULL,
-  description varchar(50) NOT NULL,
+  content varchar(50) NOT NULL,
   PRIMARY KEY (ID)
 );
 

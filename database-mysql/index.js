@@ -17,4 +17,18 @@ var selectAll = function(callback) {
   });
 };
 
-module.exports.selectAll = selectAll;
+var insertItem = function (itemInfo, callback) {
+  connection.query('INSERT INTO items SET ?', itemInfo, function (err, response) {
+    if (err) {
+      callback(err, response);
+    } else {
+      callback(null, response);
+    }
+  });
+};
+
+module.exports = {
+  selectAll : selectAll,
+  insertItem : insertItem
+};
+  

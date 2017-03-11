@@ -8,10 +8,28 @@ var app = express();
 
 // UNCOMMENT FOR REACT
 app.use(express.static(__dirname + '/../react-client/dist'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // UNCOMMENT FOR ANGULAR
 // app.use(express.static(__dirname + '/../angular-client'));
 // app.use(express.static(__dirname + '/../node_modules'));
+
+
+app.post('/items/add', function(req, res) {
+  console.log('req.body.item is', req.body.item);
+  var itemInfo = {
+    content: req.body.item
+  };
+  items.insertItem(itemInfo, function(err, response) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(response);
+      res.send('item has been added to the database');
+    }
+  });
+});
 
 app.get('/items', function (req, res) {
   items.selectAll(function(err, data) {
