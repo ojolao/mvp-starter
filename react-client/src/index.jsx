@@ -12,6 +12,7 @@ class App extends React.Component {
     };
     this.getRequest = this.getRequest.bind(this);
     this.addToDo = this.addToDo.bind(this);
+    this.removeToDo = this.removeToDo.bind(this);
   }
 
   componentDidMount () {
@@ -41,7 +42,6 @@ class App extends React.Component {
       data: {item: item},
       success: (data) => {
         console.log('post request was successful');
-        console.log(this);
         this.getRequest();
       },
       error: (err) => {
@@ -50,10 +50,26 @@ class App extends React.Component {
     });
   }
 
+  removeToDo(item) {
+    console.log(`${item} was sent to server for deletion`);
+    $.ajax({
+      url: '/items/delete',
+      method: 'DELETE',
+      data: {item: item},
+      success: (data) => {
+        console.log('delete request was successful');
+        this.getRequest();
+      },
+      error: (err) => {
+        console.log('err from delete request', err);
+      }
+    });
+  }
+
   render () {
     return (<div>
       <h1>Item List</h1>
-      <List items={this.state.items}/>
+      <List items={this.state.items} removeToDo={this.removeToDo}/>
       <AddTask addToDo={this.addToDo}/>
     </div>);
   }

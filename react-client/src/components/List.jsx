@@ -6,7 +6,7 @@ const List = (props) => (
     <h4> My To Do List </h4>
     There are { props.items.length } items.
     <ul>
-    { props.items.map(item => <ListItem key={item.id} item={item}/>)}
+    { props.items.map(item => <ListItem key={item.id} item={item} removeToDo={props.removeToDo}/>)}
     </ul>
   </div>
 );
