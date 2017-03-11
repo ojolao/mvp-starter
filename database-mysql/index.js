@@ -20,7 +20,17 @@ var selectAll = function(callback) {
 var insertItem = function (itemInfo, callback) {
   connection.query('INSERT INTO items SET ?', itemInfo, function (err, response) {
     if (err) {
-      callback(err, response);
+      callback(err, null);
+    } else {
+      callback(null, response);
+    }
+  });
+};
+
+var deleteItem = function (itemInfo, callback) {
+  connection.query('DELETE from items WHERE id = ?', itemInfo, function(err, response) {
+    if (err) {
+      callback(err, null);
     } else {
       callback(null, response);
     }
@@ -29,6 +39,7 @@ var insertItem = function (itemInfo, callback) {
 
 module.exports = {
   selectAll : selectAll,
-  insertItem : insertItem
+  insertItem : insertItem,
+  deleteItem : deleteItem
 };
   

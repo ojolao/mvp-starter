@@ -42,6 +42,19 @@ app.get('/items', function (req, res) {
   });
 });
 
+app.delete('/items/delete', function(req, res) {
+  console.log('req.body is', req.body);
+  var itemInfo = req.body.item.id;
+  items.deleteItem(itemInfo, function(err, response) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(response);
+      res.send('item has been deleted from the database');
+    }
+  });
+});
+
 app.listen(3000, function() {
   console.log('listening on port 3000!');
 });
