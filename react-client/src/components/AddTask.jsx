@@ -13,6 +13,7 @@ class AddTask extends React.Component {
 
   addToList() {
     this.props.addToDo(this.state.value);
+    this.setState({value: ''});
   }
 
   render () {
