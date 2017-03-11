@@ -22,7 +22,7 @@ class App extends React.Component {
     $.ajax({
       url: '/items', 
       success: (data) => {
-        console.log('get request was successful');
+        console.log('get request was successful', data);
         this.setState({
           items: data
         });

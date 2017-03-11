@@ -6,7 +6,7 @@ USE test;
 
 CREATE TABLE IF NOT EXISTS items (
   id int NOT NULL AUTO_INCREMENT,
-  content varchar(50) NOT NULL,
+  content varchar(256) NOT NULL,
   PRIMARY KEY (ID)
 );
 
