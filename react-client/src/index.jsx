@@ -15,7 +15,7 @@ class App extends React.Component {
     this.removeToDo = this.removeToDo.bind(this);
     this.handleDragStart = this.handleDragStart.bind(this);
     this.handleDragEnd = this.handleDragEnd.bind(this);
-    this.getPlaceholder = this.getPlaceholder.bind(this);
+    //this.getPlaceholder = this.getPlaceholder.bind(this);
     this.handleDragOver = this.handleDragOver.bind(this);
     //this.handleDrop = this.handleDrop.bind(this);
 
@@ -47,10 +47,11 @@ class App extends React.Component {
     var data = this.state.items;
     var dragFrom = Number(this.dragged.dataset.id);
     var dragTo = Number(this.over.dataset.id);
-    console.log('dragFrom, dragTo', this.dragged, this.over);
+    console.log('dragFrom, dragTo', dragFrom, dragTo);
     if (dragFrom < dragTo ) { dragTo--; }
-    data.splice(dragTo, 0, data.splice(dragFrom, 1)[0]);
-    console.log('data', data);
+    console.log('data before splice', data);
+    data.splice(dragTo, 0, (data.splice(dragFrom, 1)[0]));
+    console.log('data after splice', data);
     this.setState({items: data});
   }
 
@@ -58,6 +59,7 @@ class App extends React.Component {
     e.preventDefault();
     this.over = e.target;
     e.target.parentNode.insertBefore(this.getPlaceholder(), e.target);
+    console.log('handleDragOver has ended');
   }
 
   handleDrop(e) {
