@@ -43,22 +43,35 @@ class App extends React.Component {
   handleDragEnd(e) {
     e.preventDefault();
     console.log('drag is over');
+    this.dragged.style.display = 'block';
     this.dragged.parentNode.removeChild(this.getPlaceholder());
     var data = this.state.items;
     var dragFrom = Number(this.dragged.dataset.id);
     var dragTo = Number(this.over.dataset.id);
     console.log('dragFrom, dragTo', dragFrom, dragTo);
     if (dragFrom < dragTo ) { dragTo--; }
+    if (this.nodePlacement === 'after') { dragTo++; }
     console.log('data before splice', data);
-    data.splice(dragTo, 0, (data.splice(dragFrom, 1)[0]));
+    data.splice(dragTo, 0, data.splice(dragFrom, 1)[0]);
     console.log('data after splice', data);
     this.setState({items: data});
   }
 
   handleDragOver(e) {
     e.preventDefault();
+    this.dragged.style.display = 'none';
     this.over = e.target;
-    e.target.parentNode.insertBefore(this.getPlaceholder(), e.target);
+    var relY = e.clientY - this.over.offsetTop;
+    var height = this.over.offsetHeight / 2;
+    var parent = e.target.parentNode;
+
+    if (relY > height) {
+      this.nodePlacement = 'after';
+      parent.insertBefore(this.getPlaceholder(), e.target.nextElementSibling);
+    } else if (relY < height) {
+      this.nodePlacement = 'before';
+      parent.insertBefore(this.getPlaceholder(), e.target);
+    }
     console.log('handleDragOver has ended');
   }
 
