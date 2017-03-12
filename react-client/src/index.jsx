@@ -18,6 +18,7 @@ class App extends React.Component {
     //this.getPlaceholder = this.getPlaceholder.bind(this);
     this.handleDragOver = this.handleDragOver.bind(this);
     //this.handleDrop = this.handleDrop.bind(this);
+    this.updateListAfterDrag = this.updateListAfterDrag.bind(this);
 
   }
 
@@ -55,6 +56,8 @@ class App extends React.Component {
     data.splice(dragTo, 0, data.splice(dragFrom, 1)[0]);
     console.log('data after splice', data);
     this.setState({items: data});
+    console.log('data to be sent to server', this.state.items);
+    this.updateListAfterDrag(this.state.items);
   }
 
   handleDragOver(e) {
@@ -91,6 +94,21 @@ class App extends React.Component {
       },
       error: (err) => {
         console.log('err from get request', err);
+      }
+    });
+  }
+
+  updateListAfterDrag (items) {
+    console.log(`${items} was posted to server`);
+    $.ajax({
+      url: '/items/update',
+      method: 'POST',
+      data: {items: items},
+      success: (data) => {
+        console.log('post request to update items was successful');
+      },
+      error: (err) => {
+        console.log('err from post request to update items', err);
       }
     });
   }

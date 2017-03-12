@@ -15,6 +15,27 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express.static(__dirname + '/../angular-client'));
 // app.use(express.static(__dirname + '/../node_modules'));
 
+app.post('/items/update', function (req, res) {
+  console.log('req.body.items is', req.body.items);
+  body = req.body.items;
+  body.forEach(function(item, index) {
+    var itemInfo = {
+      content: item.content
+    };
+    console.log('itemInfo', itemInfo);
+    items.updateItems(itemInfo, function(err, response) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('table has been updated');
+        if (index === (body.length - 1)) {
+          res.send('database update complete');
+        }
+      }
+    });
+  });
+
+});
 
 app.post('/items/add', function(req, res) {
   console.log('req.body.item is', req.body.item);

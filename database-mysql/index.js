@@ -37,9 +37,26 @@ var deleteItem = function (itemInfo, callback) {
   });
 };
 
+var updateItems = function (itemInfo, callback) {
+  connection.query('truncate items', function (err, response) {
+    if (err) {
+      throw (err);
+    } else {
+      connection.query('Insert INTO items SET ?', itemInfo, function (err, response) {
+        if (err) {
+          callback(err, null);
+        } else {
+          callback(null, response);
+        }
+      });
+    }
+  });
+};
+
 module.exports = {
   selectAll : selectAll,
   insertItem : insertItem,
-  deleteItem : deleteItem
+  deleteItem : deleteItem,
+  updateItems : updateItems
 };
   
