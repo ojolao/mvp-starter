@@ -13,10 +13,56 @@ class App extends React.Component {
     this.getRequest = this.getRequest.bind(this);
     this.addToDo = this.addToDo.bind(this);
     this.removeToDo = this.removeToDo.bind(this);
+    this.handleDragStart = this.handleDragStart.bind(this);
+    this.handleDragEnd = this.handleDragEnd.bind(this);
+    this.getPlaceholder = this.getPlaceholder.bind(this);
+    this.handleDragOver = this.handleDragOver.bind(this);
+    //this.handleDrop = this.handleDrop.bind(this);
+
   }
 
   componentDidMount () {
     this.getRequest();
+  }
+
+  getPlaceholder() {
+    if (!this.placeholder) {
+      this.placeholder = document.createElement('li');
+    }
+    return this.placeholder;
+  }
+
+  handleDragStart (e) {
+    console.log('drag is starting');
+    console.log('drag start e.', e.currentTarget);
+    this.dragged = e.currentTarget;
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', e.currentTarget);
+  }
+
+  handleDragEnd(e) {
+    e.preventDefault();
+    console.log('drag is over');
+    this.dragged.parentNode.removeChild(this.getPlaceholder());
+    var data = this.state.items;
+    var dragFrom = Number(this.dragged.dataset.id);
+    var dragTo = Number(this.over.dataset.id);
+    console.log('dragFrom, dragTo', this.dragged, this.over);
+    if (dragFrom < dragTo ) { dragTo--; }
+    data.splice(dragTo, 0, data.splice(dragFrom, 1)[0]);
+    console.log('data', data);
+    this.setState({items: data});
+  }
+
+  handleDragOver(e) {
+    e.preventDefault();
+    this.over = e.target;
+    e.target.parentNode.insertBefore(this.getPlaceholder(), e.target);
+  }
+
+  handleDrop(e) {
+    e.preventDefault();
+    console.log('something has been dropped');
   }
 
   getRequest () {
@@ -69,7 +115,7 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>Item List</h1>
-      <List items={this.state.items} removeToDo={this.removeToDo}/>
+      <List items={this.state.items} removeToDo={this.removeToDo} handleDragStart={this.handleDragStart} handleDragEnd={this.handleDragEnd} handleDragOver={this.handleDragOver}/>
       <AddTask addToDo={this.addToDo}/>
     </div>);
   }

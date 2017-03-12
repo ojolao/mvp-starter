@@ -5,8 +5,8 @@ const List = (props) => (
   <div>
     <h4> My To Do List </h4>
     There are { props.items.length } items.
-    <ul>
-    { props.items.map(item => <ListItem key={item.id} item={item} removeToDo={props.removeToDo}/>)}
+    <ul onDragOver={props.handleDragOver}>
+    { props.items.map((item, i) => <ListItem data-id={i} key={item.id} item={item} removeToDo={props.removeToDo}/>)}
     </ul>
   </div>
 );
