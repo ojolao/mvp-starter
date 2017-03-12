@@ -21,7 +21,7 @@ class ListItem extends React.Component {
 
   render () {
     return (
-        <div draggable="true" onDragStart={this.handleDragStart.bind(this)} onDragEnd={this.handleDragOver.bind(this)} onDrop={this.handleDrop.bind(this)} style={{cursor: 'move', borderWidth: 0.5, borderRadius: 5, padding: 5, borderColor: 'black', borderStyle: 'solid', marginBottom: 5}}>{ this.props.item.content}
+        <div draggable="true" onDragStart={this.props.handleDragStart.bind(this)} onDragEnd={this.props.handleDragEnd.bind(this)} onDrop={this.handleDrop.bind(this)} style={{cursor: 'move', borderWidth: 0.5, borderRadius: 5, padding: 5, borderColor: 'black', borderStyle: 'solid', marginBottom: 5}}>{ this.props.item.content}
             <button style={{position: 'absolute', right: 0}} onClick ={() => { this.props.removeToDo(this.props.item); }}>X</button>
         </div>
     );
