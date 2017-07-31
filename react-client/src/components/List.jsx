@@ -2,9 +2,8 @@ import React from 'react';
 import ListItem from './ListItem.jsx';
 
 const List = (props) => (
-  <div>
-    <h4> My To Do List </h4>
-    There are { props.items.tasks.length } items.
+  <div className="list">
+    <p style={{ padding: 5, marginBottom: 0 }}> { props.items.tasks.length } items </p>
     <ol>
     { props.items.tasks.map((item, i) => {
         var dragging = (i === props.items.dragging) ? 'dragging' : '';
