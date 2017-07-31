@@ -41,7 +41,7 @@ class App extends React.Component {
     $.ajax({
       url: '/items', 
       success: (data) => {
-        console.log('get request was successful', data);
+        //console.log('get request was successful', data);
         const dataObj = { tasks: data }
         this.setState({
           items: dataObj
@@ -84,7 +84,6 @@ class App extends React.Component {
     var items = this.state.items.tasks;
     items.splice(to, 0, items.splice(from, 1)[0]);
     this.sort(items, to);
-    console.log('dragOver over', over);
   } 
 
   // handleDragStart(e) {
@@ -142,13 +141,12 @@ class App extends React.Component {
 
 
   updateListAfterDrag (items) {
-    console.log(`${items} was posted to server`);
     $.ajax({
       url: '/items/update',
       method: 'POST',
       data: {items: items},
       success: (data) => {
-        console.log('post request to update items was successful');
+        //console.log('post request to update items was successful');
       },
       error: (err) => {
         console.log('err from post request to update items', err);
@@ -157,13 +155,11 @@ class App extends React.Component {
   }
 
   addToDo (item) {
-    console.log(`${item} was posted to server`);
     $.ajax({
       url: '/items/add',
       method: 'POST',
       data: {item: item},
       success: (data) => {
-        console.log('post request was successful');
         this.getRequest();
       },
       error: (err) => {
@@ -173,13 +169,11 @@ class App extends React.Component {
   }
 
   removeToDo(item) {
-    console.log(`${item} was sent to server for deletion`);
     $.ajax({
       url: '/items/delete',
       method: 'DELETE',
       data: {item: item},
       success: (data) => {
-        console.log('delete request was successful');
         this.getRequest();
       },
       error: (err) => {
