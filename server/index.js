@@ -16,18 +16,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express.static(__dirname + '/../node_modules'));
 
 app.post('/items/update', function (req, res) {
-  console.log('req.body.items is', req.body.items);
+  //console.log('req.body.items is', req.body.items);
   body = req.body.items;
   body.forEach(function(item, index) {
     var itemInfo = {
       content: item.content
     };
-    console.log('itemInfo', itemInfo);
+    //console.log('itemInfo', itemInfo);
     items.updateItems(itemInfo, function(err, response) {
       if (err) {
-        console.log(err);
+        //console.log(err);
       } else {
-        console.log('table has been updated');
+        //console.log('table has been updated');
         if (index === (body.length - 1)) {
           res.send('database update complete');
         }
@@ -38,15 +38,15 @@ app.post('/items/update', function (req, res) {
 });
 
 app.post('/items/add', function(req, res) {
-  console.log('req.body.item is', req.body.item);
+  //console.log('req.body.item is', req.body.item);
   var itemInfo = {
     content: req.body.item
   };
   items.insertItem(itemInfo, function(err, response) {
     if (err) {
-      console.log(err);
+      //console.log(err);
     } else {
-      console.log(response);
+      //console.log(response);
       res.send('item has been added to the database');
     }
   });
@@ -55,7 +55,7 @@ app.post('/items/add', function(req, res) {
 app.get('/items', function (req, res) {
   items.selectAll(function(err, data) {
     if (err) {
-      console.log(err);
+      //console.log(err);
       res.sendStatus(500);
     } else {
       res.json(data);
@@ -64,13 +64,13 @@ app.get('/items', function (req, res) {
 });
 
 app.delete('/items/delete', function(req, res) {
-  console.log('req.body is', req.body);
+  //console.log('req.body is', req.body);
   var itemInfo = req.body.item.id;
   items.deleteItem(itemInfo, function(err, response) {
     if (err) {
-      console.log(err);
+      //console.log(err);
     } else {
-      console.log(response);
+      //console.log(response);
       res.send('item has been deleted from the database');
     }
   });
