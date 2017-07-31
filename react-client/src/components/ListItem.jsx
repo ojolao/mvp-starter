@@ -7,13 +7,13 @@ class ListItem extends React.Component {
     this.state = {};
   }
 
-  handleDragStart (e) {
-    console.log('drag is starting');
-  }
-  handleDragOver(e) {
-    e.preventDefault();
-    console.log('drag is over');
-  }
+  // handleDragStart (e) {
+  //   console.log('drag is starting');
+  // }
+  // handleDragOver(e) {
+  //   e.preventDefault();
+  //   console.log('drag is over');
+  // }
   handleDrop(e) {
     e.preventDefault();
     console.log('something has been dropped');
@@ -21,7 +21,7 @@ class ListItem extends React.Component {
 
   render () {
     return (
-        <div draggable="true" data-id={this.props.dataId}onDragStart={this.props.handleDragStart} onDragEnd={this.props.handleDragEnd} onDrop={this.handleDrop.bind(this)} style={{cursor: 'move', borderWidth: 0.5, borderRadius: 5, padding: 5, borderColor: 'black', borderStyle: 'solid', marginBottom: 5}}>{ this.props.item.content}
+        <div draggable="true" className={this.props.dragging} data-id={this.props.dataId}onDragStart={this.props.dragStart} onDragEnd={this.props.dragEnd} style={{cursor: 'move', borderWidth: 0.5, borderRadius: 5, padding: 5, borderColor: 'black', borderStyle: 'solid', marginBottom: 5}}>{ this.props.item.content}
             <button style={{position: 'absolute', right: 0}} onClick ={() => { this.props.removeToDo(this.props.item); }}>X</button>
         </div>
     );
