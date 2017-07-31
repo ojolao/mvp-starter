@@ -8,7 +8,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: { tasks: [] }
+      items: { tasks: [] },
     };
     this.getRequest = this.getRequest.bind(this);
     this.addToDo = this.addToDo.bind(this);
@@ -17,11 +17,6 @@ class App extends React.Component {
     this.dragStart = this.dragStart.bind(this);
     this.dragOver = this.dragOver.bind(this);
     this.sort = this.sort.bind(this);
-    // this.handleDragStart = this.handleDragStart.bind(this);
-    // this.handleDragEnd = this.handleDragEnd.bind(this);
-    //this.getPlaceholder = this.getPlaceholder.bind(this);
-    // this.handleDragOver = this.handleDragOver.bind(this);
-    // this.handleDrop = this.handleDrop.bind(this);
     this.updateListAfterDrag = this.updateListAfterDrag.bind(this);
 
   }
@@ -30,19 +25,13 @@ class App extends React.Component {
     this.getRequest();
   }
 
-  // getPlaceholder() {
-  //   if (!this.placeholder) {
-  //     this.placeholder = document.createElement('li');
-  //   }
-  //   return this.placeholder;
-  // }
 
   getRequest () {
     $.ajax({
       url: '/items', 
       success: (data) => {
         //console.log('get request was successful', data);
-        const dataObj = { tasks: data }
+        const dataObj = { tasks: data };
         this.setState({
           items: dataObj
         });
@@ -85,60 +74,6 @@ class App extends React.Component {
     items.splice(to, 0, items.splice(from, 1)[0]);
     this.sort(items, to);
   } 
-
-  // handleDragStart(e) {
-  //   console.log('drag is starting');
-  //   console.log('drag start e.', e.currentTarget);
-  //   this.dragged = e.currentTarget;
-  //   e.dataTransfer.effectAllowed = 'move';
-  //   e.dataTransfer.setData('text/html', e.currentTarget);
-  // }
-
-  // handleDragEnd(e) {
-  //   e.preventDefault();
-  //   console.log('drag is over');
-  //   this.dragged.style.display = 'block';
-  //   this.dragged.parentNode.removeChild(this.getPlaceholder());
-  //   var data = this.state.items;
-  //   var dragFrom = Number(this.dragged.dataset.id);
-  //   var dragTo = Number(this.over.dataset.id);
-  //   console.log('dragFrom, dragTo', dragFrom, dragTo);
-  //   if (dragFrom < dragTo ) { dragTo--; }
-  //   if (this.nodePlacement === 'after') { dragTo++; }
-  //   console.log('data before splice', data);
-  //   data.splice(dragTo, 0, data.splice(dragFrom, 1)[0]);
-  //   console.log('data after splice', data);
-  //   this.setState({items: data});
-  //   console.log('data to be sent to server', this.state.items);
-  //   this.updateListAfterDrag(this.state.items);
-  // }
-
-  // handleDragOver(e) {
-  //   e.preventDefault();
-  //   this.dragged.style.display = 'none';
-  //   this.over = e.target;
-  //   var relY = e.clientY - this.over.offsetTop;
-  //   var height = this.over.offsetHeight / 2;
-  //   var parent = e.target.parentNode;
-
-  //   if (relY > height) {
-  //     this.nodePlacement = 'after';
-  //     parent.insertBefore(this.getPlaceholder(), e.target.nextElementSibling);
-  //   } else if (relY < height) {
-  //     this.nodePlacement = 'before';
-  //     parent.insertBefore(this.getPlaceholder(), e.target);
-  //   }
-  //   console.log('handleDragOver has ended');
-  // }
-
-  // handleDrop(e) {
-  //   e.preventDefault();
-  //   console.log('something has been dropped');
-  // }
-
-
-
-
 
   updateListAfterDrag (items) {
     $.ajax({
