@@ -2,6 +2,13 @@
 body {
     background: aliceblue;
 }
+button {
+    background: black;
+    color: grey;
+}
+li button {
+    border: none;
+}
 .list{
     background: black;
     color: white;

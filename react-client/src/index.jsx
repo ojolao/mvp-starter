@@ -118,8 +118,8 @@ class App extends React.Component {
   }
 
   render () {
-    return (<div>
-      <h1>Item List</h1>
+    return (<div className="list" style={{ borderWidth: 0.5, borderRadius: 5, padding: 5, borderColor: 'silver', borderStyle: 'solid', marginBottom: 5 }}>
+      <h1>Your List</h1>
       <List items={this.state.items} removeToDo={this.removeToDo} dragEnd={this.dragEnd} dragStart={this.dragStart} dragOver={this.dragOver} sort={this.sort} handleDragStart={this.handleDragStart} handleDragEnd={this.handleDragEnd} handleDragOver={this.handleDragOver}/>
       <AddTask addToDo={this.addToDo}/>
     </div>);
